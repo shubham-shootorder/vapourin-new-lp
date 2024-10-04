@@ -1,0 +1,77 @@
+
+
+header {
+    transition: background-color 0.3s;
+}
+
+
+.scroll-link.active {
+    background-color: whitesmoke;
+    border-radius: 9999px;
+    padding: 10px 15px;
+    color: #fff;
+}
+/* Mobile menu styles */
+.mobile-menu.hidden {
+    display: none;
+}
+
+.mobile-menu-button {
+    cursor: pointer;
+}
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+.animate-slideInLeft {
+    animation: slideInLeft 1s forwards;
+}
+
+.animate-slideInRight {
+    animation: slideInRight 1s forwards;
+}
+.slick-next{
+    color:#000000 !important;
+
+
+}
+.slick-prev{
+    color:#000000 !important;
+}
+.slick-prev:before,
+.slick-next:before
+{
+   
+    opacity: 1;
+    color: black !important;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+    display: block;
+    height: 0;
+    overflow-y: hidden;
+}
+.tab-content > .active,
+.pill-content > .active {
+    height: auto;
+}

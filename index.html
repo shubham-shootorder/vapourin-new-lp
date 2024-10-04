@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaporin LP</title>
+    <link rel="icon" type="image/x-icon" href="/images/cropped-logo-wide-192x192.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base container class */
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        /* Breakpoints for responsive container */
+        @media (min-width: 576px) {
+            .container {
+                max-width: 540px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1320px;
+            }
+        }
+
+        /* Full width container */
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .rounded-tl-xl {
+            border-top-left-radius: 4rem;
+        }
+
+        .rounded-tr-xl {
+            border-top-right-radius: 4rem;
+        }
+
+        .active-tab {
+            color: #21285e;
+            border-bottom: 2px solid #21285e;
+        }
+
+        /* slick slider carousel */
+
+        .slick-list {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0px 0;
+        }
+
+        .slick-list .slick-slide {
+            font-size: 30px;
+            text-align: center;
+            /* padding: 40px 20px; */
+            line-height: 2;
+            font-weight: 700;
+        }
+
+        .slick-dotted.slick-slider {
+            margin-bottom: 0%;
+        }
+
+        .slick-arrow {
+            z-index: 1;
+            width: 40px;
+            height: 40px;
+        }
+
+        .slick-arrow:before {
+            font-size: 30px;
+        }
+
+        .slick-next {
+            right: 0;
+        }
+
+        .slick-prev {
+            left: 0;
+        }
+
+        .btn-wrap {
+            text-align: center;
+            width: 100%;
+        }
+
+        button {
+
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.5s;
+        }
+
+        button.slick-disabled {
+            opacity: 0.6;
+        }
+
+        /* zoom in and out  */
+        .zoomable {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .zoomable img {
+            transition: transform 0.3s ease-in-out;
+            transform-origin: center center;
+        }
+
+        /* navbar */
+        /* .bg-transparent {
+            background-color: transparent;
+        }
+        .bg-colored {
+            background-color: #21285e;
+        }
+        .text-initial {
+            color: white;
+        }
+        .text-scrolled {
+            color: white;
+        } */
+        .color {
+            color: #21285e !important;
+        }
+
+        .color-bar {
+            background-color: #21285e;
+        }
+
+        .fixeed {
+            position: fixed;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            /* Change this to the desired hover color */
+            border-radius: 0.5rem;
+            /* Rounded corners for the hover effect */
+        }
+
+        .highlight {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* .nav-link {
+            transition: background-color 0.3s;
+        } */
+
+        .nav-link.active {
+            background-color: #0065c8;
+            border-radius: 50px;
+            padding: 5px 15px;
+            color: #fff;
+        }
+
+        .mobile-menu {
+            position: sticky;
+            top: 10%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            z-index: 999999999999999;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-offset {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+
+<body class="text-white">
+
+    <!-- Header -->
+    <header id="navbar"
+        class="staticw bg-white w-full top-0 z-10 flex justify-between items-center p-3 bg-transparent transition-all duration-300">
+        <div class="flex items-center">
+            <a href="#home">
+                <img src="./image/logo.png" alt="Logo" class="h-15 w-36">
+            </a>
+        </div>
+        <nav class="hidden md:flex space-x-8">
+            <ul id="nav-links"
+                class="flex items-center gap-10 space-x-4 text-xl text-initial transition-all duration-300 color">
+                <li><a href="#about-us" class="nav-link hover:text- font-semibold active">About Us</a></li>
+                <li><a href="#variants" class="nav-link  font-semibold">Variants</a></li>
+                <li><a href="#ingredients" class="nav-link  font-semibold">Ingredients</a></li>
+                <li><a href="#benefits" class="nav-link  font-semibold">Benefits</a></li>
+                <li><a href="#direction" class="nav-link  font-semibold">Direction To Use</a></li>
+                <li><a href="#contact-us" class="nav-link  font-semibold">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="md:hidden flex items-center">
+            <button id="menu-btn" class="outline-none mobile-menu-button">
+                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <div class="mobile-menu hidden md:hidden">
+        <ul class="flex flex-col space-y-4 text-center text-xl w-full bg-transparent">
+            <li><a href="#about-us" class="nav-link block text-black">About Us</a></li>
+            <li><a href="#variants" class="nav-link block text-black">Variants</a></li>
+            <li><a href="#ingredients" class="nav-link block text-black">Ingredients</a></li>
+            <li><a href="#benefits" class="nav-link block text-black">Benefits</a></li>
+            <li><a href="#direction" class="nav-link block text-black ">Direction To Use</a></li>
+            <li><a href="#contact-us" class="nav-link block text-black ">Contact Us</a></li>
+        </ul>
+    </div>
+
+
+
+
+    <!-- Hero Section -->
+    <div id="about-us" class="object-cover ">
+        <img id="home" src="image/IPI-Banner-Aug-1.png" alt="" class="w-full">
+    </div>
+
+    <!-- Hero Section -->
+    <!-- <div class="container  z-10  h-full text-left px-6">
+            <img src="image/IPI-Banner-Aug-1.png" alt="" class> -->
+    <!-- <h1 class="text-4xl md:text-6xl font-bold mb-4">Roll-On, Headache Gone, <br /> Experience Quick <br />
+                Relief Now! </h1>
+            <p class="text-lg md:text-2xl mb-8">
+                At Vaporin, we're committed to providing precise solutions for common health issues. Our Anti-Headache
+                 Roll-On provides quick, effective relief with natural ingredients. 
+            </p> -->
+    <!-- <a href="#" class="bg-purple-500 text-white px-6 py-3 rounded hover:bg-purple-600">Get Started</a> -->
+    </div>
+    </div>
+
+    <!-- New Section -->
+    <section id="variants" class="section-offset">
+
+        <section id="variants" class="bg-white text-center py-12 rounded-tl-xl rounded-tr-xl md:rounded-tl-none">
+            <div class="max-w-4xl mx-auto px-4">
+                <h1 class="text-2xl md:text-4xl font-bold text-customBlue mb-3 uppercase color">Variants </h1>
+                <h2 class="text-xl md:text-2xl font-bold text-customBlue mb-8 color"> Vaporin Anti-Headache Roll-On is
+                    available in two soothing fragrances: </h2>
+                <div class="flex justify-center space-x-8 mb-8">
+                    <button id="lavender-tab"
+                        class="tab-button text-2xl text-white hover:text-[#21285e] p-4 active-tab !bg-[#4E338E]"
+                        onclick="showTabContent('tab1', 'lavender')">Lavender</button>
+                    <button id="jasmine-tab"
+                        class="tab-button text-2xl text-white p-4 !bg-[#F9F158] hover:text-[#21285e] "
+                        onclick="showTabContent('tab2', 'jasmine')">Jasmine</button>
+                </div>
+
+                <div id="tab1" class="tab-content flex justify-center items-center md:flex-nowrap flex-wrap">
+                    <div id="Carousel2"
+                        class="slick-list carousel-container w-full md:w-3/4 rounded-lg overflow-hidden">
+                        <div class="zoomable"><img src="image/car-1.png" loading="lazy" alt="USP Image "
+                                class="w-full h-auto rounded-lg"></div>
+                        <div class="zoomable"><img src="image/car-2.png" loading="lazy" alt="USP Image 2"
+                                class="w-full h-auto rounded-lg"></div>
+                        <div class="zoomable"><img src="image/car-3.png" loading="lazy" alt="USP Image 1"
+                                class="w-full h-auto rounded-lg"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 p-4 text-justify">
+                        <!-- <h3 class="text-xl font-bold text-purple-800 mb-2">80% increase in email response rate</h3> -->
+                        <p class="text-gray-700 text-lg">The Vaporin Anti-Headache Roll-On Lavender is known for its
+                            soothing and calming effects, making it perfect for relaxation. It helps calm your mind and
+                            body, providing relief from headaches and stress. Ideal for unwinding after a long day or
+                            whenever you need a break, the gentle lavender aroma creates a serene environment, helping
+                            you relax effortlessly
+                        </p>
+                    </div>
+                </div>
+                <div id="tab2" class="tab-content flex justify-center items-center hidden md:flex-nowrap flex-wrap ">
+                    <div id="Carousel12"
+                        class="slick-list carousel-container w-full md:w-3/4 rounded-lg overflow-hidden">
+                        <div class="zoomable"><img src="image/car2-1.png" loading="lazy" alt="USP Image 3"
+                                class="w-full h-auto rounded-lg"></div>
+                        <div class="zoomable"><img src="image/car2-2.png" loading="lazy" alt="USP Image 2"
+                                class="w-full h-auto rounded-lg"></div>
+                        <div class="zoomable"><img src="image/car2-3.png" loading="lazy" alt="USP Image 1"
+                                class="w-full h-auto rounded-lg"></div>
+
+
+                    </div>
+                    <div class="w-full md:w-1/2 p-4 text-justify">
+                        <!-- <h3 class="text-xl font-bold text-purple-800 mb-2">75% increase in sales productivity</h3> -->
+                        <p class="text-gray-700 text-lg"> Jasmine offers a fresh and invigorating scent that can lift
+                            your spirits and energize your mind.
+                            This variant is perfect when you need a boost, as it helps to awaken your senses and improve
+                            your mood. The sweet, floral
+                            fragrance of jasmine is known for its uplifting qualities, providing a burst of positivity
+                            and revitalization. It's a
+                            great option for those moments when you need to shake off fatigue or a bad mood, helping you
+                            feel more refreshed and
+                            ready to take on the day. With jasmine, you get both headache relief and a delightful
+                            sensory experience that leaves
+                            you feeling rejuvenated. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Ingredients -->
+    <section id="ingredients" class="text-white py-12 bg-[#0065c8] section-offset">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
+            <div class="text-left md:w-1/3">
+                <h2 class="text-2xl md:text-4xl font-bold mb-4 uppercase"> Key Ingredients</h2>
+                <p>Our roll-on is made with carefully selected natural ingredients that work together to provide quick
+                    relief from headaches and tension.</p>
+            </div>
+            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                <div class="bg-white p-4 rounded-lg flex flex-col items-center w-60">
+                    <img src="image/Menthol.jpg" alt="Placeholder Image" class="mb-2">
+                    <p class="text-lg font-bold color">Menthol</p>
+                    <p class="text-center color">Instant cooling effect that quickly eases headaches.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex flex-col items-center w-60">
+                    <img src="image/eucalyputs-oil.jpg" alt="Placeholder Image" class="mb-2">
+                    <p class="text-lg font-bold color">Eucalyptus Oil</p>
+                    <p class="text-center color">Soothes tension with its aromatic properties.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex flex-col items-center w-60">
+                    <img src="image/Ethyl-Oil-2.jpg" alt="Placeholder Image" class="mb-2">
+                    <p class="text-lg font-bold color">Ethyl Alcohol</p>
+                    <p class="text-center color">Derived from Ghana sugarcane, it aids in quick absorption and enhances
+                        the effectiveness of other ingredients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- benefits -->
+
+    <section id="benefits"
+        class="p-15 flex items-center justify-center text-black animate-fadeIn bg-custom-pattern bg-gray-100 section-offset">
+
+        <div class="container mx-auto p-10 flex flex-col md:flex-col items-center">
+            <div class="mb-8 text-center">
+                <h2 class="text-5xl font-bold mb-8 text-center md:text-left custom-font-head whitespace-nowrap color">
+                    BENEFITS </h2>
+            </div>
+            <!-- Left Side: Icon, Heading, Content -->
+            <div class="w-full  flex justify-center items-center md:items-start">
+                <!-- <h2 class="text-5xl font-bold mb-8 text-center md:text-left custom-font-head ">3-in-1 Properties</h2> -->
+                <!-- Row 1: 2 Columns -->
+                <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-[8rem] ">
+                    <!-- Row 1, Column 1 -->
+                    <div class="flex flex-col items-center text-center md:text-left mb-4">
+                        <img src="image/Calmness.png" alt="Icon 1" class="w-32 h-32 mb-4">
+                        <h3 class="text-xl text-center font-semibold w-3/4">Boost Calmness
+                        </h3>
+                    </div>
+                    <!-- Row 1, Column 2 -->
+                    <div class="flex flex-col items-center text-center md:text-left">
+                        <img src="image/Natural-Ingredients.png" alt="Icon 2" class="w-32 h-32 mb-4">
+                        <h3 class="text-xl text-center font-semibold w-3/4">Natural Ingredients </h3>
+                    </div>
+                    <!-- Row 1, Column 3-->
+                    <div class="flex flex-col items-center text-center md:text-left">
+                        <img src="image/Relaxing-Aroma.png" alt="Icon 2" class="w-32 h-32 mb-4">
+                        <h3 class="text-xl text-center font-semibold w-3/4"> Relaxing Aroma </h3>
+                    </div>
+                    <!-- Row 1, Column 4 -->
+                    <div class="flex flex-col items-center text-center md:text-left">
+                        <img src="image/Fast-Acting-relif (1).png" alt="Icon 2" class="w-32 h-32 mb-4">
+                        <h3 class="text-xl text-center font-semibold w-3/4">Fast-Acting Relief</h3>
+                    </div>
+                    <!-- Row 1, Column 5 -->
+                    <!-- <div class="flex flex-col items-center text-center md:text-left">
+                        <img src="image/vaporin---icon-5.png" alt="Icon 2" class="w-24 h-24 mb-4">
+                        <h3 class="text-xl text-center font-semibold w-3/4">Choice of Fragrances </h3>
+                    </div> -->
+
+
+                </div>
+    </section>
+
+    <!-- direction to use -->
+    <section id="direction"
+        class="min-h-full flex flex-col items-center justify-center bg-[#0065c8] py-12  color-bar bg-brief-pattern section-offset">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-10 text-white text-center custom-font-head ">DIRECTIONS FOR USE</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Step 1 -->
+                <div class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-md">
+                    <div
+                        class="flex-shrink-0 w-18 h-16 flex items-center justify-center rounded-full back-color text-black">
+                        <img src="image/1.png" alt="Icon 1" class="w-32 h-32">
+
+                    </div>
+                    <div class="">
+                        <p class="ml-2 text-lg text-blue-500 font-bold color"> 1.Twist the Cap</p>
+                        <p class="ml-2 text-lg text-gray-800"> Twist to reveal the roll-on applicator.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-md">
+                    <div
+                        class="flex-shrink-0 w-18 h-16 flex items-center justify-center rounded-full back-color text-black">
+                        <img src="image/2.png" alt="Icon 2" class="w-32 h-32">
+                    </div>
+                    <div class="">
+                        <p class="ml-2 text-lg text-blue-500 font-bold color"> 2.Apply</p>
+                        <p class="ml-2 text-lg text-gray-800"> Gently roll the applicator over your temples and the back
+                            of your neck. </p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-md">
+                    <div
+                        class="flex-shrink-0 w-18 h-16 flex items-center justify-center rounded-full back-color text-black">
+                        <img src="image/3.png" alt="Icon 3" class="w-32 h-32">
+                    </div>
+                    <div class="">
+                        <p class="ml-2 text-lg text-blue-500 font-bold color"> 3.Relax </p>
+                        <p class="ml-2 text-lg text-gray-800"> Allow the natural ingredients to absorb and provide
+                            relief in less than a minute. Enjoy the relaxing aroma, or use it whenever you want to feel
+                            more relaxed.
+                        </p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-md">
+                    <div
+                        class="flex-shrink-0 w-18 h-16 flex items-center justify-center rounded-full back-color text-black">
+                        <img src="image/4.png" alt="Icon 4" class="w-32 h-32">
+                    </div>
+                    <div class="">
+                        <p class="ml-2 text-lg text-blue-500 font-bold color"> 4.Reapply as Needed</p>
+                        <p class="ml-2 text-lg text-gray-800"> Use the roll-on whenever you feel a headache coming on or
+                            whenever you want to experience continued relief and relaxation. </p>
+                    </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact-us" class="py-8 section-offset bg-white ">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8 text-white color">
+            <h2 class="text-4xl font-bold text-white color text-center mb-10 custom-font-head">
+                CONTACT US
+            </h2>
+            <div
+                class="flex flex-col md:flex-row lg:gap-40 justify-center items-center md:items-start p-6 space-y-6 md:space-y-0 md:space-x-6 w-full">
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-phone text-white color mr-2"></i>
+                        <h3 class="font-bold">Mobile Number</h3>
+                    </div>
+                    <p>+91-7337449965</p>
+                </div>
+                <div class="flex flex-col items-center md:items-center text-center md:text-center">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-map-marker-alt text-white color mr-2"></i>
+                        <h3 class="font-bold !text-center">Office Address</h3>
+                    </div>
+                    <div class="text-center md:text-center">
+                        <p>Top floor, Plot No. 16, Jayabheri Enclave,<br> SY. Nos.103/1, 105 & 106, Gachibowli,<br>
+                            Serilingampally, R R Dist. – 500032, Telangana, India.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-envelope text-white color mr-2"></i>
+                        <h3 class="font-bold">Email Address</h3>
+                    </div>
+                    <a href="mailto:customercare@ipiindia.co"
+                        class="hover:text-blue-800 hover:underline">customercare@ipiindia.co</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="back-color text-white text-center p-4 bg-[#0065c8]">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <p class="m-0 font-bold">Copyright © 2024 Vaporin All Rights Reserved.</p>
+            </div>
+            <div class="flex space-x-4">
+                <a href="http://ipiindia.in/vaporin/" target="_blank" class="text-white">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="https://www.facebook.com/VaporinAromaRelaxingOil?mibextid=JRoKGi" target="_blank"
+                    class="text-white">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/vaporin.in?igsh=MXhvZ2t6eXIzZTNuMQ==" target="_blank"
+                    class="text-white">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+        integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- mobile and navbar script -->
+    <script>
+        function showTabContent(tab, selected) {
+            // Remove active classes from both buttons
+            document.getElementById('lavender-tab').classList.remove('bg-lavender-400', 'text-white');
+            document.getElementById('jasmine-tab').classList.remove('bg-jasmine-400', 'text-white');
+
+            // Add active class to the selected tab
+            if (selected === 'lavender') {
+                document.getElementById('lavender-tab').classList.add('bg-lavender-400', 'text-white');
+            } else if (selected === 'jasmine') {
+                document.getElementById('jasmine-tab').classList.add('bg-jasmine-400', 'text-white');
+            }
+
+            // Show content for the selected tab (this part assumes you have separate content areas)
+            // Your existing logic to show/hide content goes here...
+        }
+
+    </script>
+    <script>
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.getElementById('nav-links');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-colored');
+                navbar.classList.remove('bg-transparent');
+                navLinks.classList.add('text-scrolled');
+                navLinks.classList.remove('text-initial');
+                navbar.classList.add('fixeed');
+            } else {
+                navbar.classList.add('bg-transparent');
+                navbar.classList.remove('bg-colored');
+                navLinks.classList.add('text-initial');
+                navLinks.classList.remove('text-scrolled');
+                navbar.classList.remove('fixeed');
+            }
+        });
+
+    </script>
+
+    <script>
+        function showTabContent(tabId) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-button');
+
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            tabButtons.forEach(button => {
+                button.classList.remove('active-tab');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            event.target.classList.add('active-tab');
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize the slick carousels
+            $("#Carousel2, #Carousel12").slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: false,
+                autoplaySpeed: 2000,
+                arrows: true,
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear'
+            });
+
+            $(".prev-btn").click(function () {
+                $("#Carousel2").slick("slickPrev");
+            });
+
+            $(".next-btn").click(function () {
+                $("#Carousel2").slick("slickNext");
+            });
+
+            $(".prev-btn").addClass("slick-disabled");
+
+            $("#Carousel2").on("afterChange", function () {
+                if ($(".slick-prev").hasClass("slick-disabled")) {
+                    $(".prev-btn").addClass("slick-disabled");
+                } else {
+                    $(".prev-btn").removeClass("slick-disabled");
+                }
+
+                if ($(".slick-next").hasClass("slick-disabled")) {
+                    $(".next-btn").addClass("slick-disabled");
+                } else {
+                    $(".next-btn").removeClass("slick-disabled");
+                }
+            });
+        });
+
+        function showTabContent(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+
+            // Remove active-tab class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active-tab');
+            });
+
+            // Show the selected tab content
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Add active-tab class to the clicked button
+            event.target.classList.add('active-tab');
+
+            // Reinitialize the carousel for the visible tab content
+            if (tabId === 'tab2') {
+                $("#Carousel12").slick('setPosition');
+            } else if (tabId === 'tab1') {
+                $("#Carousel2").slick('setPosition');
+            }
+        }
+
+        // Zoom in and out for image
+        document.addEventListener('DOMContentLoaded', () => {
+            const zoomableImages = document.querySelectorAll('.zoomable img');
+
+            zoomableImages.forEach(image => {
+                image.addEventListener('mousemove', (event) => {
+                    const rect = image.getBoundingClientRect();
+                    const x = (event.clientX - rect.left) / rect.width * 100;
+                    const y = (event.clientY - rect.top) / rect.height * 100;
+                    image.style.transformOrigin = `${x}% ${y}%`;
+                    image.style.transform = 'scale(1.5)';
+                });
+
+                image.addEventListener('mouseleave', () => {
+                    image.style.transform = 'scale(1)';
+                    image.style.transformOrigin = 'center center';
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            function setActiveLink() {
+                let fromTop = window.scrollY;
+                let buffer = 400;
+
+                navLinks.forEach(link => {
+                    let section = document.querySelector(link.hash);
+                    if (
+                        section.offsetTop - buffer <= fromTop &&
+                        section.offsetTop + section.offsetHeight - buffer > fromTop
+                    ) {
+                        link.classList.add("active");
+                    } else {
+                        link.classList.remove("active");
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", setActiveLink);
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    document.querySelector(this.hash).scrollIntoView({
+                        behavior: "smooth"
+                    });
+                });
+            });
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuBtn = document.getElementById("menu-btn");
+            const mobileMenu = document.querySelector(".mobile-menu");
+            const navLinks = document.querySelectorAll('.mobile-menu .nav-link');
+
+            menuBtn.addEventListener("click", function () {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    mobileMenu.classList.add("hidden");
+                });
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>
